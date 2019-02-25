@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <link href="style2.css" rel="stylesheet">
+    <title>Project #1 - Interactive Visualization Interface</title>
+    <script src="RadarChart.js"></script>
+  </head>
+  <body>
+    <div style="width: 100%; background: #DDFFDD; color: black; text-align: center; padding:10px;"><b><font size="5">Project #1 - Interactive Visualization Interface</font></b><br>
+      This is a summary of American's money lending pattern.<br>
+      Hover to each bar in the bar chart and see the changes in the another 2 graphs.<br>
+      Press the "Show All States" button to view the overview at any time.<br>
+      Warm reminder: For PC users you have the best view; For MacBook users, please adjust the Zoom to 80% for better view
+    </div>
+    <div class="panel">
+      <iframe scrolling="no" id="f1" style="width: 100%; height: 50%;" src="bar.html"> </iframe>
+      <iframe id="f2" style="width: 100%; height: 80%;" src="other/newradar/index.html"></iframe>
+    </div>
+
+    <div class="panel">
+      <iframe id="f3" width="940" height="1200" src="other/calendar/index.html"></iframe>
+    </div>
+
+    <script src="scripts/d3.v4.js"></script>
+    <script src="barchart.js"></script>
+    <script src="RadarChart.js"></script>
+    <script src="calendar.js"></script>
+    <!-- sorry TA...but I have to include this jquery thing, hope that it is fine... -->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script>
+    var myold = '';
+      function myhover(){
+        var temp = document.getElementById('f1').contentWindow.hovering;
+        if (temp!=myold){
+          console.log(myold+' '+temp);
+          console.log('drawing');
+          myold = temp;
+          document.getElementById('f2').contentWindow.mydraw(temp);
+          console.log(document.getElementById('f3').contentWindow.mydraw(temp));
+        }
+      }
+      setInterval(myhover,10);
+    </script>
+  </body>
+</html>
